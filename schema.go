@@ -128,6 +128,7 @@ func (api *API) createOpenAPI() (spec *openapi3.T, err error) {
 				}
 
 				var resp *openapi3.Response
+
 				switch model.Type.Kind() {
 				case reflect.String:
 					resp = openapi3.NewResponse().
