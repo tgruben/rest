@@ -126,13 +126,22 @@ func (api *API) createOpenAPI() (spec *openapi3.T, err error) {
 				if err != nil {
 					return spec, err
 				}
-				resp := openapi3.NewResponse().
-					WithDescription("").
-					WithContent(map[string]*openapi3.MediaType{
-						"application/json": {
-							Schema: getSchemaReferenceOrValue(name, schema),
-						},
-					})
+				var resp *openapi3.Response
+				switch v := model.(type) {
+				case int:
+					fmt.Printf("Twice %v is %v\n", v, v*2)
+				case string:
+					fmt.Printf("%q is %v bytes long\n", v, len(v))
+				default:
+					resp = openapi3.NewResponse().
+						WithDescription("").
+						WithContent(map[string]*openapi3.MediaType{
+							"application/json": {
+								Schema: getSchemaReferenceOrValue(name, schema),
+							},
+						})
+				}
+
 				op.AddResponse(status, resp)
 			}
 

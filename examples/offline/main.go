@@ -7,9 +7,9 @@ import (
 	"os"
 
 	"github.com/a-h/respond"
-	"github.com/a-h/rest"
-	"github.com/a-h/rest/examples/offline/models"
 	"github.com/getkin/kin-openapi/openapi3"
+	"github.com/tgruben/rest"
+	"github.com/tgruben/rest/examples/offline/models"
 )
 
 func main() {
