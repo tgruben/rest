@@ -126,12 +126,13 @@ func (api *API) createOpenAPI() (spec *openapi3.T, err error) {
 				if err != nil {
 					return spec, err
 				}
+
 				var resp *openapi3.Response
-				switch v := model.(type) {
-				case int:
-					fmt.Printf("Twice %v is %v\n", v, v*2)
-				case string:
-					fmt.Printf("%q is %v bytes long\n", v, len(v))
+				switch model.Type.Kind() {
+				case reflect.String:
+					resp = openapi3.NewResponse().
+						WithDescription(schema.Description)
+
 				default:
 					resp = openapi3.NewResponse().
 						WithDescription("").
@@ -141,7 +142,6 @@ func (api *API) createOpenAPI() (spec *openapi3.T, err error) {
 							},
 						})
 				}
-
 				op.AddResponse(status, resp)
 			}
 

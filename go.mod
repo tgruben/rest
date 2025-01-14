@@ -3,6 +3,7 @@ module github.com/tgruben/rest
 go 1.21
 
 require (
+	github.com/a-h/rest v0.0.0-20240504113546-6729b3328f85
 	github.com/getkin/kin-openapi v0.124.0
 	github.com/go-chi/chi/v5 v5.0.12
 	github.com/google/go-cmp v0.5.9
